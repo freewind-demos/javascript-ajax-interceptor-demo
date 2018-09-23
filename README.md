@@ -1,6 +1,17 @@
-Js Hello World Demo
-===================
+JavaScript Ajax Interceptor Demo
+================================
 
-Open `index.html` in your browser.
+```
+npm install
+npm run demo
+```
 
-You will see "Hello, JS!" on the page.
+Then open <http://localhost:3000>
+
+### xhr
+
+![xhr](./images/xhr.jpg)
+
+### jquery
+
+![jquery](./images/jquery.jpg)
