@@ -1,42 +1,42 @@
-const AjaxInterceptor = require('./ajax-interceptor')
+var AjaxInterceptor = require('./ajax-interceptor');
 
 AjaxInterceptor.addRequestCallback(function (xhr, args) {
-    console.log('request', xhr, args)
-})
+  console.log('request', xhr, args)
+});
 AjaxInterceptor.addResponseCallback(function (xhr) {
-    console.log('response', xhr)
-})
+  console.log('response', xhr)
+});
 
-AjaxInterceptor.wire()
+AjaxInterceptor.wire();
 
-const $ = window.$
+var $ = window.$;
 
 function displayData(data) {
-    $('#data').text(JSON.stringify(data, null, 2))
+  $('#data').text(JSON.stringify(data, null, 2))
 }
 
-$(() => {
-    $('#xhr-trigger').click(() => {
-        const request = new XMLHttpRequest()
-        request.open('POST', '/data.json', true)
-        request.onload = function () {
-            const data = JSON.parse(request.responseText)
-            displayData(data)
-        }
-        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-        request.send('username=freewind')
-    })
+$(function () {
+  $('#xhr-trigger').click(function () {
+    var request = new XMLHttpRequest();
+    request.open('POST', '/data.json', true);
+    request.onload = function () {
+      var data = JSON.parse(request.responseText);
+      displayData(data)
+    };
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send('username=freewind')
+  });
 
-    $('#jquery-ajax-trigger').click(() => {
-        $.ajax({
-            url: '/data.json',
-            method: 'POST',
-            data: {
-                username: 'freewind'
-            },
-            success: (data) => {
-                displayData(data)
-            }
-        })
+  $('#jquery-ajax-trigger').click(function () {
+    $.ajax({
+      url: '/data.json',
+      method: 'POST',
+      data: {
+        username: 'freewind'
+      },
+      success: function (data) {
+        displayData(data)
+      }
     })
-})
+  })
+});
